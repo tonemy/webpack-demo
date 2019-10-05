@@ -1,11 +1,11 @@
 {
-  "name": "geektime2",
+  "name": "demo",
   "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --port 8010 --config webpack.dev.js",
+    "dev": "webpack-dev-server --port 8010 --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
   "keywords": [],
@@ -16,6 +16,7 @@
     "autoprefixer": "^9.6.2",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
     "glob": "^7.1.4",
@@ -33,6 +34,7 @@
   },
   "dependencies": {
     "cssnano": "^4.1.10",
+    "jquery": "^3.4.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3"
   }
 }

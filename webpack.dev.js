@@ -1,9 +1,11 @@
-const baseConfig = require('./webpack.base.js');
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const glob = require('glob')
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const glob = require('glob');
+const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const layuiSrc =  './node_modules/layui-src/src/lay' ;
 
 //多页面输出应用打包
 const setMPA = () => {
@@ -106,6 +108,14 @@ module.exports = {
         }),
         //清理输出目录
         new CleanWebpackPlugin(),
+        // 静态资源输出,不需要经过webpack处理，直接输出到指定的地方
+        new CopyWebpackPlugin([{
+            from:path.resolve(__dirname, layuiSrc), to:'lay'
+        }]),
+        //ProvidePlugin只有你在使用到定义的库的时候，才会打包进去
+        new webpack.ProvidePlugin({
+            $: 'jquery'
+        })
     ].concat(HtmlWebpackPlugins),
 
     //代码热更新

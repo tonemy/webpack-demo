@@ -1,11 +1,14 @@
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.base.js');
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const glob = require('glob')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const glob = require('glob');
+const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const layuiSrc ='./node_modules/layui-src/src/lay';
+const templatePath = 'template/';
+const staticPath = 'static/';
 
 //多页面输出应用打包
 const setMPA = () => {
@@ -23,7 +26,7 @@ const setMPA = () => {
             HtmlWebpackPlugins.push(
                 new HtmlWebpackPlugin({
                     template: path.join(__dirname, `./src/${pageName}/index.html`),
-                    filename: `${pageName}.html`,
+                    filename: templatePath + `${pageName}.html`,
                     chunks: [pageName],
                     inject: true,
                     //html-文件压缩参数
@@ -50,7 +53,7 @@ module.exports =  {
     entry:  entry,
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: '[name]_[chunkhash:8].js'
+        filename: staticPath + 'js/[name]_[chunkhash:8].js'
     },
     mode: 'production',
     //资源解析
@@ -92,7 +95,7 @@ module.exports =  {
                     {
                         loader:  'file-loader',
                         options:{
-                            name: '[name]_[hash:8].[ext]'
+                            name: staticPath + 'img/[name]_[hash:8].[ext]'
                         }
                     }
                 ]
@@ -103,7 +106,7 @@ module.exports =  {
                     {
                         loader:  'file-loader',
                         options: {
-                            name: '[name]_[hash:8].[ext]'
+                            name: staticPath + 'fonts/[name]_[hash:8].[ext]'
                         }
                     }
                 ]
@@ -113,7 +116,7 @@ module.exports =  {
     plugins: [
         //css-文件指纹以及抽取
         new MiniCssExtractPlugin({
-            filename: '[name]_[contenthash:8].css'
+            filename: staticPath + 'css/[name]_[contenthash:8].css'
         }),
         //清理输出目录
         new CleanWebpackPlugin(),
@@ -121,8 +124,34 @@ module.exports =  {
         new OptimizeCssAssetsWebpackPlugin({
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano')
+        }),
+        // 静态资源输出,不需要经过webpack处理，直接输出到指定的地方
+        new CopyWebpackPlugin([{
+            from:path.resolve(__dirname, layuiSrc), to:'./lay'
+        }]),
+        //ProvidePlugin只有你在使用到此库的时候，才会打包进去
+        new webpack.ProvidePlugin({
+            $: 'jquery'
         })
-        //css提取公共部分，例如react,react-dom
-        //提取js公共部分
-    ].concat(HtmlWebpackPlugins)
+
+    ].concat(HtmlWebpackPlugins),
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                //打包多次请求的js文件
+                commons: {
+                    name: "commons",
+                    chunks: "all", // 必须三选一： "initial" | "all" | "async"(默认就是async)
+                    minChunks: 1 // 某个方法至少引用了两次，才会单独抽离
+                },
+                //提取js公共部分
+                // vendors: {
+                //     test: /(react|react-dom)/,
+                //     name: "vendors", // 要缓存的 分隔出来的 chunk 名称,需加入到html输出的脚本里
+                //     chunks: "all"
+                // }
+            }
+        }
+    },
+
 };
