@@ -5,7 +5,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const glob = require('glob');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const layuiSrc =  './node_modules/layui-src/src/lay' ;
+const layuiSrc =  'node_modules/layui-src/src' ;
 
 //多页面输出应用打包
 const setMPA = () => {
@@ -109,9 +109,8 @@ module.exports = {
         //清理输出目录
         new CleanWebpackPlugin(),
         // 静态资源输出,不需要经过webpack处理，直接输出到指定的地方
-        new CopyWebpackPlugin([{
-            from:path.resolve(__dirname, layuiSrc), to:'lay'
-        }]),
+        new CopyWebpackPlugin([{from: path.join(layuiSrc, 'lay'), to: 'lay'}]),
+        new CopyWebpackPlugin([{from: path.join(layuiSrc, 'css'), to: 'css'}]),
         //ProvidePlugin只有你在使用到定义的库的时候，才会打包进去
         new webpack.ProvidePlugin({
             $: 'jquery'

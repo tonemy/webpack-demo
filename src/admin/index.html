@@ -1,23 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台管理系统</title>
+
 </head>
-<body>
-<ul class="layui-nav" lay-filter="">
-    <li class="layui-nav-item"><a href="">最新活动</a></li>
-    <li class="layui-nav-item layui-this"><a href="">产品</a></li>
-    <li class="layui-nav-item"><a href="">大数据</a></li>
-    <li class="layui-nav-item">
-        <a href="javascript:;">解决方案</a>
-        <dl class="layui-nav-child"> <!-- 二级菜单 -->
-            <dd><a href="">移动模块</a></dd>
-            <dd><a href="">后台模版</a></dd>
-            <dd><a href="">sss</a></dd>
-        </dl>
-    </li>
-    <li class="layui-nav-item"><a href="">社区</a></li>
-</ul>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class=" layui-header layui-bg-cyan">
+        <div class="layui-logo ">后台管理系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav  layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+            </li>
+            <li class="layui-nav-item">
+                <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">修改信息</a></dd>
+                    <dd><a href="javascript:;">退出</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+            <li class="layui-nav-item">
+                <a> <i class="layui-icon layui-icon-user"> </i>用户管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="userManage.html  " target="option">用户添加</a></dd>
+                    <dd><a href="roleManage.html  " target="option">用户修改</a></dd>
+                    <dd><a href="javascript:;">用户审核</a></dd>
+                    <dd><a href="javascript:;">用户停用</a></dd>
+                    <dd><a href="javascript:;">用户激活</a></dd>
+                    <dd><a href="javascript:;">用户重置</a></dd>
+                    <dd><a href="javascript:;">用户注销</a></dd>
+                    <dd><a href="javascript:;">用户导入</a></dd>
+                    <dd><a href="javascript:;">用户导出</a></dd>
+                    <dd><a href="javascript:;">用户查询</a></dd>
+
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">角色管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">角色定义</a></dd>
+                    <dd><a href="">角色变更</a></dd>
+                    <dd><a href="">角色查询</a></dd>
+                    <dd><a href="">角色分组</a></dd>
+
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">元数据管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">分类管理</a></dd>
+                    <dd><a href="">数据项管理</a></dd>
+                </dl>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+<!--        <div style="padding: 15px;">内容主体区域</div>
+ <iframe src="https://www.baidu.com/" frameborder="0" height="100%" width="100%"></iframe>
+-->
+        <iframe id="option" name="option" src="userManage.html " frameborder="0" height="100%" width="100%"></iframe>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+
 </body>
 </html>
