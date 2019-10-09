@@ -5,7 +5,7 @@
   "data": [ {
     "id": 0,
     "username": "chaoyang",
-    "CH_name": "朝阳区用户",
+    "CH_username": "朝阳区用户",
     "email": "chaoyang@qq.com",
     "active": "t",
     "xzqhdm": "203105"
@@ -13,7 +13,7 @@
     {
       "id": 1,
       "username": "haidian",
-      "CH_name": "海淀区用户",
+      "CH_username": "海淀区用户",
       "email": "haidian@qq.com",
       "active": "t",
       "xzqhdm": "203108"
