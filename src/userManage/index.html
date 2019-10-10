@@ -6,51 +6,48 @@
 </head>
 <body>
 
-<table id="demo" lay-filter="test"></table>
+<table id="demo"  lay-filter="test"></table>
+<div class="layui-form">
 <form id="layui-form" action="">
     <div class="layui-form-item">
         <label class="layui-form-label">username</label>
         <div class="layui-input-block">
-            <input type="text" name="username"  id = "username" required  lay-verify="required"  autocomplete="off" class="layui-input">
+            <input type="text" name="username"  id = "username" required  lay-verify="username"  autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">CH_username</label>
         <div class="layui-input-block">
-            <input type="text" name="CH_username"   id = "CH_username" required  lay-verify="required"  autocomplete="off" class="layui-input">
+            <input type="text" name="CH_username"   id = "CH_username" required  lay-verify="CH_username"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">passWord</label>
+        <div class="layui-input-block">
+            <input type="text" name="active" id = "password"  required  lay-verify="password"   autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">email</label>
         <div class="layui-input-block">
-            <input type="text" name="email"  id = "email" required  lay-verify="required" autocomplete="off" class="layui-input">
+            <input type="text" name="email"  id = "email"   lay-verify="email" autocomplete="off" class="layui-input">
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">active</label>
-        <div class="layui-input-block">
-            <input type="text" name="active" id = "active"  required  lay-verify="required"   autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">xzqhdm</label>
-        <div class="layui-input-block">
-            <input type="text" name="xzqhdm" id="xzqhdm" required  lay-verify="required"   autocomplete="off" class="layui-input">
-        </div>
+
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="submit" class="layui-btn" lay-submit lay-filter="demo1">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </form>
-<script type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-
-        <button class="layui-btn layui-btn-sm layui-btn layui-btn-normal" data-method="offset" data-type="auto" lay-event="add">添加</button>
-
     </div>
+<script type="text/html" id="toolbarDemo">
+
+        <input type="text" name="send_name"   id = "send_name"   class="layui-input">
+        <button id ="user_search" class="layui-btn layui-btn-sm layui-btn layui-btn-normal" data-method="offset" data-type="auto"  >搜索</button>
+
 </script>
 
 <script type="text/html" id="barDemo">
