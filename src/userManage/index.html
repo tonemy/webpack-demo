@@ -3,58 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
 </head>
 <body>
 
 <table id="demo"  lay-filter="test"></table>
 <div class="layui-form">
-<form id="layui-form" action="">
-    <div class="layui-form-item">
-        <label class="layui-form-label">username</label>
-        <div class="layui-input-block">
-            <input type="text" name="username"  id = "username" required  lay-verify="username"  autocomplete="off" class="layui-input">
+    <form id="layui-form" action="" method="post">
+        <input type="hidden" id ="id" name="id">
+        <div class="layui-form-item">
+            <label class="layui-form-label">username</label>
+            <div class="layui-input-block">
+                <input type="text" name="username"  id = "username" required  lay-verify="username"  autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">CH_username</label>
-        <div class="layui-input-block">
-            <input type="text" name="CH_username"   id = "CH_username" required  lay-verify="CH_username"  autocomplete="off" class="layui-input">
+        <div class="layui-form-item">
+            <label class="layui-form-label">CH_username</label>
+            <div class="layui-input-block">
+                <input type="text" name="ch_name"   id = "ch_name" required  lay-verify="ch_name"  autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">passWord</label>
-        <div class="layui-input-block">
-            <input type="text" name="active" id = "password"  required  lay-verify="password"   autocomplete="off" class="layui-input">
+        <div class="layui-form-item">
+            <label class="layui-form-label">passWord</label>
+            <div class="layui-input-block">
+                <input type="text" name="password" id = "password"  required  lay-verify="password"   autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">email</label>
-        <div class="layui-input-block">
-            <input type="text" name="email"  id = "email"   lay-verify="email" autocomplete="off" class="layui-input">
+        <div class="layui-form-item">
+            <label class="layui-form-label">email</label>
+            <div class="layui-input-block">
+                <input type="text" name="email"  id = "email"   lay-verify="email" autocomplete="off" class="layui-input">
+            </div>
         </div>
-
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button type="submit" class="layui-btn" lay-submit lay-filter="demo1">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" id="modify" class="layui-btn" lay-submit lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
         </div>
-    </div>
-</form>
-    </div>
+    </form>
+</div>
 <script type="text/html" id="toolbarDemo">
-
-        <input type="text" name="send_name"   id = "send_name"   class="layui-input">
-        <button id ="user_search" class="layui-btn layui-btn-sm layui-btn layui-btn-normal" data-method="offset" data-type="auto"  >搜索</button>
+     <div class="layui-inline">
+        <input type="text" name="send_name"  id = "send_name" class="layui-input" placeholder="输入用户名">
+    </div>
+     <button id ="user_search" class="layui-btn layui-btn-sm layui-btn layui-btn-normal" data-method="offset" data-type="auto"  >搜索</button>
 
 </script>
 
 <script type="text/html" id="barDemo">
 
-    <i class="layui-icon layui-icon-edit"  lay-event="edit" style="font-size: 30px; color: #1E9FFF; cursor: pointer"></i>
-    <i class="layui-icon layui-icon-delete"   lay-event="del" style="font-size: 30px; color: #FF5722;  cursor: pointer"></i>
-
+    <input type="checkbox" lay-skin="switch" lay-text="激活|停用" >
+<!--    <i class="layui-icon layui-icon-edit"  lay-event="edit" style="font-size: 30px; color: #1E9FFF; cursor: pointer"></i>-->
+<!--    <i class="layui-icon layui-icon-delete"   lay-event="del" style="font-size: 30px; color: #FF5722;  cursor: pointer"></i>-->
+    <button type="button"   lay-event="edit" class="layui-btn layui-btn-xs">编辑</button>
+    <button type="button"  lay-event="del" class="layui-btn layui-btn-xs">删除</button>
 </script>
 
 </body>
