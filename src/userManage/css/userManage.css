@@ -1,7 +1,9 @@
 #layui-form {
     display: none;
 }
-
+body {
+    font-family: "Lucida Console";
+}
 .active {
     top: -5px;
     font-size: 49px;

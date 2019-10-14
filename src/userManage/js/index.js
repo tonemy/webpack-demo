@@ -24,10 +24,10 @@ layui.use(['element', 'table', 'layer', 'form', 'layedit', 'laydate'], function(
             ,{field: 'ch_name', title: '区域用户', width:180}
             ,{field: 'password_hash', title: '密码', width:180}
             ,{field: 'email', title: '邮箱', width:180}
-            ,{field: 'active', title: '是否激活', width: 80}
-            ,{field: 'xzqhdm', title: 'xzqhdm', width: 80}
+            ,{field: 'active', title: '是否激活', width: 120, templet: '#isActive', align: 'center'}
+            ,{field: 'xzqhdm', title: 'xzqhdm', width: 100}
             ,{field: 'last_accessed_time', title: '最后登录时间', width: 180}
-            ,{field: 'right', title: '操作', width: 200, toolbar: '#barDemo'}
+            ,{field: 'right', title: '操作', width: 200, toolbar: '#barDemo' }
         ]]
     });
    // 监听事件
@@ -49,6 +49,7 @@ layui.use(['element', 'table', 'layer', 'form', 'layedit', 'laydate'], function(
     table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
         let data = obj.data //获得当前行数据
             ,layEvent = obj.event; //获得 lay-event 对应的值
+        console.log(layEvent)
         if(layEvent === 'del'){
             layer.confirm('真的删除行么', function(index){
                  //删除对应行（tr）的DOM结构
@@ -72,9 +73,33 @@ layui.use(['element', 'table', 'layer', 'form', 'layedit', 'laydate'], function(
                     }
                 })
             });
-        } else if(layEvent === 'edit'){
+        }else if(layEvent === 'edit'){
             EidtForm(data, obj);
         }
+    });
+    form.on('switch(switchTest)', function (obj) {
+        let id = $(this).attr('switch_id');
+        console.log(id);
+        // 数据重载
+        let isActive = obj.elem.active?true:false;
+        $.ajax({
+            url: 'http://127.0.0.1:3000/mock/11/actUser',
+            type: 'POST',
+            contentType: 'application/json;charset=UTF-8',
+            dataType: 'json',
+            data: JSON.stringify({"id": id, "active": isActive}),
+            success: function (res) {
+                if(res.code === 1) {
+                    layer.msg("修改成功", {icon: 6});
+                }else {
+                    layer.msg("修改失败", {icon: 2});
+                }
+            },
+            error: function () {
+                layer.msg("修改失败", {icon: 2});
+            }
+        })
+
     });
     //表单修改的验证
     form.verify({
@@ -108,6 +133,7 @@ layui.use(['element', 'table', 'layer', 'form', 'layedit', 'laydate'], function(
             }
         }
     });
+
     //监听提交
     form.on('submit(demo1)', function(data){
         //ajax提交post请求后,重置表单数据,并隐藏

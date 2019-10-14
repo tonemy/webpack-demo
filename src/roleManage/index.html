@@ -5,31 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-<form class="layui-form" action="">
-    <div class="layui-form-item">
-        <label class="layui-form-label">username</label>
-        <div class="layui-input-block">
-            <input type="text" name="title" required  lay-verify="required"  autocomplete="off" class="layui-input">
-        </div>
+ <table id = "getAllRoles" lay-filter="allRoles"></table>
+ <script type="text/html" id="topbar">
+    <div class="layui-input-inline">
+        <input type="text" class="layui-input" placeholder = "请输入名字">
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">CH_username</label>
-        <div class="layui-input-block">
-            <input type="text" name="title" required  lay-verify="required"  autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">email</label>
-        <div class="layui-input-block">
-            <input type="text" name="title" required  lay-verify="required" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">email</label>
-        <div class="layui-input-block">
-            <input type="text" name="title" required  lay-verify="required"   autocomplete="off" class="layui-input">
-        </div>
-    </div>
-</form>
+     <button class="layui-btn layui-btn-sm layui-bg-red" >查询</button>
+ </script>
+ <script type="text/html" id = "rightbar">
+     <button type="button"   lay-event="edit" class="layui-btn layui-btn-xs">编辑</button>
+     <button type="button"  lay-event="del" class="layui-btn layui-btn-xs layui-bg-red">删除</button>
+</script>
 </body>
 </html>

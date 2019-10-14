@@ -52,13 +52,15 @@
 </script>
 
 <script type="text/html" id="barDemo">
-
-    <input type="checkbox" lay-skin="switch" lay-text="激活|停用" >
-<!--    <i class="layui-icon layui-icon-edit"  lay-event="edit" style="font-size: 30px; color: #1E9FFF; cursor: pointer"></i>-->
-<!--    <i class="layui-icon layui-icon-delete"   lay-event="del" style="font-size: 30px; color: #FF5722;  cursor: pointer"></i>-->
+<!--    <input type="checkbox" id = "switch" lay-event="isActive" lay-skin="switch" lay-filter ="switchTest" lay-text="激活|停用" >-->
+<!--  <i class="layui-icon layui-icon-edit"  lay-event="edit" style="font-size: 30px; color: #1E9FFF; cursor: pointer"></i>-->
+<!--   <i class="layui-icon layui-icon-delete"   lay-event="del" style="font-size: 30px; color: #FF5722;  cursor: pointer"></i> -->
     <button type="button"   lay-event="edit" class="layui-btn layui-btn-xs">编辑</button>
-    <button type="button"  lay-event="del" class="layui-btn layui-btn-xs">删除</button>
+    <button type="button"  lay-event="del" class="layui-btn layui-btn-xs layui-bg-red">删除</button>
 </script>
 
+<script type="text/html" id = "isActive">
+    <input type="checkbox" id = "switch" lay-event="isActive" lay-skin="switch"  lay-filter ="switchTest" switch_id = {{d.id}} lay-text="激活|停用" {{d.active===true?'checked':''}}>
+</script>
 </body>
 </html>
